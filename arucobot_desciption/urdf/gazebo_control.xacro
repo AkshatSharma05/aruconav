@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<gazebo>
+<plugin filename="libgz-sim-joint-state-publisher-system.so" name="gz::sim::systems::JointStatePublisher">
+    <topic>/joint_states</topic>
+</plugin>
+
+<plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+            <ros>
+                <namespace>/</namespace>
+                <parameter name="use_sim_time" value="true"/>
+            </ros>
+
+            <!-- Differential Drive Parameters -->
+            <left_joint>left_wheel_joint</left_joint>
+            <right_joint>right_wheel_joint</right_joint>
+            <wheel_separation>0.3</wheel_separation>
+            <wheel_radius>0.05</wheel_radius>
+
+            <!-- Command velocity topic -->
+            <cmd_vel_topic>/cmd_vel</cmd_vel_topic>
+
+            <!-- Update rate -->
+            <publish_rate>50</publish_rate>
+        </plugin>
+
+</gazebo>
+</robot>
